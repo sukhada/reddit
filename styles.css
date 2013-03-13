@@ -30,7 +30,7 @@ body {
 span.title {
 	width: 50%;
 	font: 15px 'PT Sans' black;
-	font-weight: bold;
+	font-weight: 700;
 }
 
 span.upvotes {
