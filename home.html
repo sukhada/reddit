@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Placeholder Title</title>               
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+    <body>
+		<button id="open">Add Subreddit+</button>    	
+		<div class="modal hide">
+    		<a class="close">X</a>			
+			<input type="text" id="subreddit"></input>    		
+	 		<div id="listofsubreddits"></div>
+		</div>
+	 	<ul id="posts"></ul>
+	 	<input type="button" value="Load more" onclick="loadPosts()">
+    </body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>        
+<script src="reddit.js"></script>    
+</html>
