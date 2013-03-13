@@ -90,3 +90,9 @@ span.color {
   background-clip: padding-box;
   height: 300px;	
 }
+
+.close {
+	float: right;
+	font: 35px 'Helvetica' black;
+	padding: 5px;
+}
