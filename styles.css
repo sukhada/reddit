@@ -96,3 +96,8 @@ span.color {
 	font: 35px 'Helvetica' black;
 	padding: 5px;
 }
+
+a {
+	color: black;
+	text-decoration: none;
+}
