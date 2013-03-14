@@ -1,10 +1,12 @@
 var count =0;
 var result1 = [];
 var c = 0;
-var array = [];
-var weights = [];
+var array = ["funny"];
+var weights = [100];
 var lastItem;
-var redditBaseURL= "http://www.reddit.com/.json?limit=" + 100+"&nsfw=false&after=" + lastItem +"&jsonp=?";
+var redditBaseURL= "http://www.reddit.com/.json?limit=" + 100+"&after=" + lastItem +"&jsonp=?";
+var redditFrontPageURL= "http://www.reddit.com/.json?limit=100&jsonp=?";
+
 
 $("#subreddit").keyup(function(event){
     if(event.keyCode == 13){
@@ -101,7 +103,7 @@ function loadPosts() {
 		var len = result.data.children.length;
 		var length = 20 * (weights[ind]/100);
 	    localStorage.setItem('lastItem', result.data.after);	
-		for (var i = 0; i < length; i++){
+		for (var i = 0; i < length && i < result.data.children.length; i++){
 			i = count+i
 			var img = result.data.children[i].data.title;
 			$("#posts").append("<li><span class='upvotes'>" +result.data.children[i].data.ups+  "</span><a href='" + 
@@ -127,7 +129,8 @@ function loadRedditPosts() {
 	if (array.length > 0) {
 		redditBaseURL = "http://www.reddit.com/r/" + array[0] + ".json?limit=" + 100+"&jsonp=?"
 	}
-	//$.getJSON(redditBaseURL, addNewPosts);
+	$.getJSON(redditBaseURL, getNewPage);
+	
 }
 
 function adjustHeights(elem) {
@@ -160,7 +163,6 @@ window.onload = function() {
   	if (localStorage.getItem('posts')) {
   		lastItem = localStorage.getItem('lastItem');		
     	$("#posts").html(localStorage.getItem('posts'));
-		$.getJSON(redditBaseURL, getNewPage);    
 		loadModal();			
   	} 
   	else {
