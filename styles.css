@@ -96,11 +96,6 @@ span.color {
 	padding: 5px;
 }
 
-a {
-	color: black;
-	text-decoration: none;
-}
-
 img {
 	max-width: 100%;
 	max-height: 300px;
@@ -122,6 +117,25 @@ nav {
 	height: 50px;
 }
 
-nav li {
+nav li a{
 	text-decoration: none;
+	font: 22px 'Open Sans' white;
+}
+
+nav li a:visited {
+	text-decoration: none;
+	font: 22px 'Open Sans' white;
+}
+
+nav a {
+	color: white;
+	margin-top: 10px;
+	float: left;
+}
+
+nav span {
+	color: white;
+	font: 22px 'Open Sans' white;
+	float: right;
+	top: 8px;
 }
