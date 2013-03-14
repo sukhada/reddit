@@ -5,9 +5,8 @@ body {
 
 #posts {
 	list-style-type: none;	
-	margin: 0;
-	padding: 0;
-	display: table-cell;
+	padding-top: 60px;
+	margin:0;
 }
 
 #posts li {
@@ -110,4 +109,19 @@ img {
 #img {
 	position: absolute;
 	z-index: 1000;
+}
+
+nav {
+	background: black;
+	clear: both;
+	width: 100%;
+	z-index: 2;
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 50px;
+}
+
+nav li {
+	text-decoration: none;
 }
