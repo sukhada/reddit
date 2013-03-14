@@ -94,6 +94,8 @@ function loadPosts() {
 	if (count > 99) {
 		console.log('more than 100');
 		lastItem=result.data.children[99].data.name;
+		console.log(result.data.children[99].data.title);
+		console.log(lastItem);
 		$.getJSON(redditBaseURL, loadSubreddit);			
 		count = 0;
 		return;
@@ -198,6 +200,7 @@ $(document).on("mouseenter", "a", function() {
 	var link = $(this).attr('href');
 	if ($(this).attr('href').indexOf("i.imgur") != -1) {
 		$("#img").css("top", $(this).position().top);
+		$("#img").css("left", "500px");		
 		$("#img").append("<img class='image' src='"+ link +"'></img>")
 	}
 });
