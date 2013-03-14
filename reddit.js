@@ -272,3 +272,7 @@ $("#refresh").click(function() {
 	localStorage.removeItem("posts");
 	window.location.reload();
 });
+
+$("#loadmore").click(function () {
+	loadPosts();
+});

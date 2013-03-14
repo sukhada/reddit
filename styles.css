@@ -137,5 +137,18 @@ nav span {
 	color: white;
 	font: 22px 'Open Sans' white;
 	float: right;
-	top: 8px;
+	margin-top: -3px;
+}
+
+#loadmore {
+	background-color: white;
+	list-style: none;
+	width: 100%;
+	margin-top: 10px;
+	padding-bottom: 5px;
+	font: 22px 'Open Sans' black;
+	font-weight: bold;
+	text-align: center;
+	height: 50px;
+	padding-top: 20px;
 }
