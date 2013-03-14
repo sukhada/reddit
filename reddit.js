@@ -255,12 +255,20 @@ $("#clear").click(function() {
 	window.location.reload();
 });
 
-$(document).on("mouseenter", "a", function() {
+$(document).on("mouseenter", "a", function(e) {
 	var link = $(this).attr('href');
 	if ($(this).attr('href').indexOf("i.imgur") != -1) {
-		$("#img").css("top", $(this).position().top-50);
-		$("#img").css("left", "500px");		
+		$("#img").css("top", e.pageY - 10);
+		$("#img").css("left", e.pageX - 30);		
 		$("#img").append("<img class='image' src='"+ link +"'></img>")
+	}
+});
+
+$(document).on("mousemove", "a", function(e) {
+	var link = $(this).attr('href');
+	if ($(this).attr('href').indexOf("i.imgur") != -1) {
+		$("#img").css("top",(e.pageY - 10));
+		$("#img").css("left", e.pageX + 30);
 	}
 });
 
