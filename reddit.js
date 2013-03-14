@@ -18,12 +18,10 @@ $("#subreddit").keyup(function(event){
 setTimeout(function() {localStorage.clear();}, 1800000);
 
 function addNewSubreddit() {	
-	console.log('added new subreddit');
 	var temp = $("#subreddit").val();
 	array.push(temp);
 	counts.push(0);
-	$("#listofsubreddits").append("<li>" + temp+"</li>");
-	$("#listofsubreddits").append('<input type="text" class="new"></input>')
+	$("#listofsubreddits").append("<li>" + temp+ '<input type="text" class="new"></input>'+"</li>");
 	$("#subreddit").val("");	
 
     localStorage.setItem('subreddits', array);	
@@ -40,7 +38,6 @@ function loadModal() {
 		}
 		else {
 			if (localStorage.getItem('weights')) {
-				console.log(weights);
 			}
 		}
 		var temp2 = (localStorage.getItem('counts')).split(",");
@@ -102,7 +99,6 @@ function getNewPage(e) {
 }
 
 function loadPosts() {
-	console.log(counts);
 	if (result1.length > 0) {
 		localStorage.removeItem('result1');
 		localStorage.setItem('result1', JSON.stringify(result1));				
@@ -110,10 +106,9 @@ function loadPosts() {
 	if (localStorage.getItem('lastItems')) {
 		lastItems = localStorage.getItem('lastItems').split(",");
 	}
-	console.log(lastItems);
 	for (var ind = 0; ind < array.length; ind++) {
 		count = parseInt(counts[ind]);
-		console.log(count,counts);
+
 		result = result1[ind];
 		if (count > 99) {
 			counts[ind] = 0;
@@ -122,33 +117,33 @@ function loadPosts() {
 			lastItems[ind] = lastItem;		
 	    	//localStorage.setItem('lastItems', lastItems);    	
 			loadSubreddit();
-			console.log(lastItem);
 			return;
 		}	
 
 		var length = 20 * (weights[ind]/100);
-		console.log(lastItems);
-		for (var i = 0; i < length && i < result.data.children.length; i++){	
-			i = count+i;
-			if (result.data.children[i] != undefined) {
-				var img = result.data.children[i].data.title;
-				if (!result.data.children[i].data.over_18) {
-					$("#posts").append("<li><span class='upvotes'>" +result.data.children[i].data.ups+  "</span><a href='" + 
-					result.data.children[i].data.url +"'><span class='title'>" + img + "</span></a><span class='author'>Submitted by <span class='color'>" 
-					+ result.data.children[i].data.author+ "</span></span> to <span class='subreddit'>" + result.data.children[i].data.subreddit+ "</span></li>");
+		if (result != undefined){
+			for (var i = 0; i < length && i < result.data.children.length; i++){	
+				i = count+i;
+				if (result.data.children[i] != undefined) {
+					var img = result.data.children[i].data.title;
+					if (!result.data.children[i].data.over_18) {
+						$("#posts").append("<li><span class='upvotes'>" +result.data.children[i].data.ups+  "<span class='labelupvotes'>upvotes</span></span><a class='mainlink' href='" + 
+						result.data.children[i].data.url +"'><span class='title'>" + img + "</span></a><span class='author'>Submitted by <span class='color'>" 
+						+ result.data.children[i].data.author+ "</span></span> to <span class='subreddit'>" + result.data.children[i].data.subreddit+ 
+            " </span><span class='comments'><a href='http://www.reddit.com"+ result.data.children[i].data.permalink +"'>"+ 
+            result.data.children[i].data.num_comments + " comments</a></span></li>");
+					}
 				}
-			}
-			i = i - count;
-		}
-	counts[ind] +=i;
-	console.log(lastItems);	
-	lastItems[ind] = result.data.after;
-	localStorage.setItem('lastItems', lastItems);    		
-	console.log(localStorage.getItem('lastItems'));
-	localStorage.setItem('counts', counts);				
+				i = i - count;
+			}			
+			counts[ind] +=i;
+			console.log(counts[ind]);			
+			lastItems[ind] = result.data.after;
+			localStorage.setItem('lastItems', lastItems);    		
+			localStorage.setItem('counts', counts);						
+		}	
 	}	
 
-	console.log(counts);
 	var height = $("li").each(function() {
 		var height = $(this).height();
 		$(this).children("span.upvotes").css("line-height", height+'px');
@@ -158,7 +153,6 @@ function loadPosts() {
 	localStorage.removeItem('posts');
 	localStorage.removeItem('lastItems');	
     localStorage.setItem('posts', $("#posts").html());	 
-    console.log(array);
 }
 
 function loadRedditPosts() {
@@ -180,20 +174,27 @@ function adjustHeights(elem) {
     });
 }
 
-$(window).on('resize', function () {
-	var height = $("li").each(function() {
-		var height = $(this).height();
-		$(this).children("span.upvotes").css("line-height", height+'px');
-	});	
+function fixMargins() {
+  var height = $("li").each(function() {
+    var height = $(this).height();
+    $(this).children("span.upvotes").css("line-height", height+'px');
+    $(this).children("span.labelupvotes").css("line-height", height+'px');
+  }); 
 
-	$(".title").each(function() {
-		if (($(this).height() != 20) && $(this).parent().siblings("span.upvotes").css("line-height") =='75px') {	
-			$(this).parent().siblings("span.upvotes").css("line-height", '95px');
-		}		
-	});
-	$(".title").each(function(title) {
-		adjustHeights(".title");
-	});
+  $(".title").each(function() {
+    if (($(this).height() != 20) && $(this).parent().siblings("span.upvotes").css("line-height") =='75px') {  
+      $(this).parent().siblings("span.upvotes").css("line-height", '95px');    
+      $(this).parent().siblings("span.labelupvotes").css("line-height", '95px');    
+
+    }   
+  });
+  $(".title").each(function(title) {
+    adjustHeights(".title");
+  });  
+}
+
+$(window).on('resize', function () {
+  fixMargins();
 });
 
 window.onload = function() {
@@ -201,7 +202,6 @@ window.onload = function() {
   		if (localStorage.getItem('lastItems')) {
   			lastItems = localStorage.getItem('lastItems').split(",");  			
   		}
-  		console.log(lastItems);
   		result1 = JSON.parse(localStorage.getItem('result1'));  		
 		var temp = (localStorage.getItem('counts').split(","));
 		for (var i = 0; i < temp.length; i++) {
@@ -257,19 +257,24 @@ $("#clear").click(function() {
 
 $(document).on("mouseenter", "a", function(e) {
 	var link = $(this).attr('href');
-	if ($(this).attr('href').indexOf("i.imgur") != -1) {
-		$("#img").css("top", e.pageY - 10);
-		$("#img").css("left", e.pageX - 30);		
-		$("#img").append("<img class='image' src='"+ link +"'></img>")
-	}
+  if (link != undefined) {
+    if ($(this).attr('href').indexOf("i.imgur") != -1) {
+      $("#img").css("top", e.pageY - 10);
+      $("#img").css("left", e.pageX - 30);    
+      $("#img").append("<img class='image' src='"+ link +"'></img>")
+    }    
+  }
+
 });
 
 $(document).on("mousemove", "a", function(e) {
 	var link = $(this).attr('href');
-	if ($(this).attr('href').indexOf("i.imgur") != -1) {
-		$("#img").css("top",(e.pageY - 10));
-		$("#img").css("left", e.pageX + 30);
-	}
+  if (link != undefined) {
+    if ($(this).attr('href').indexOf("i.imgur") != -1) {
+      $("#img").css("top",(e.pageY - 10));
+      $("#img").css("left", e.pageX + 30);
+    }    
+  }
 });
 
 $(document).on("mouseleave", "a", function() {
