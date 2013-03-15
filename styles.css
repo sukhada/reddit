@@ -7,6 +7,7 @@ body {
 	list-style-type: none;	
 	padding-top: 60px;
 	margin:0;
+	display: none;
 }
 
 #posts li {
@@ -252,4 +253,11 @@ span.comments{
       }
     }
   }
+}
+
+#loading {
+	display: block;
+	background: url('ajax-loader.gif') no-repeat;
+	left: 0;
+	position: fixed;
 }

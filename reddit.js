@@ -193,6 +193,8 @@ $(window).on('resize', function () {
 });
 
 window.onload = function() {
+  $("#loading").css("height", $(window).height());
+  $("#loading").css("width", $(window).width());  
   if (localStorage.getItem('subreddits')) {
   	if (localStorage.getItem('lastItems')) {
   			lastItems = localStorage.getItem('lastItems').split(",");  			
@@ -325,3 +327,8 @@ $("#listofsubreddits").on('click', ".remove", function () {
   $(this).parent().remove();
   window.location.reload();  
 });
+
+$.when(loadPosts()).done(function(a1) {
+  $("#loading").css("display", "none")
+  $("#posts").css("display", "block");
+}); 
