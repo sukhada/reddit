@@ -125,7 +125,7 @@ function loadPosts() {
 		}
   }
   $("#posts").css("display", "block");    
-  if ($(window).width > 704) {
+  if ($(window).width() > 704) {
     var height = $("li").each(function() {
       var height = $(this).outerHeight();
       $(this).children("span.upvotes").css("height", (height+15)+'px');    
@@ -136,7 +136,7 @@ function loadPosts() {
     var height = $("li").each(function() {
       var height = $(this).outerHeight();
       $(this).children("span.upvotes").css("height", (height+15)+'px');    
-      $(this).children("span.upvotes").css("line-height", (height+15)+'px');
+      $(this).children("span.upvotes").css("line-height", (height+30)+'px');
     });            
   }
 
@@ -160,7 +160,7 @@ function frontPage(result) {
     }
   }
   $("#posts").css("display", "block");    
-  if ($(window).width > 704) {
+  if ($(window).width() > 704) {
     var height = $("li").each(function() {
       var height = $(this).outerHeight();
       $(this).children("span.upvotes").css("height", (height+15)+'px');    
@@ -210,10 +210,12 @@ function fixMargins() {
 }
 
 window.onload = function() {
-  if ($(window).width < 704) {
+  if ($(window).width() < 704) {
+    console.log('here');
     $(".image").css("max-width", $(window).width());        
     $(".image").css("max-width", $(window).height());
     $("#apptitle").css("font-size", "16px");
+    $("#apptitle").css("margin-top", "26px");    
   }
   else {
     $(".image").css("max-width", 500);      
