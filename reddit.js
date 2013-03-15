@@ -212,10 +212,12 @@ function fixMargins() {
 window.onload = function() {
   if ($(window).width < 704) {
     $(".image").css("max-width", $(window).width());        
-    $(".image").css("max-width", $(window).height());          
+    $(".image").css("max-width", $(window).height());
+    $("#apptitle").css("font-size", "16px");
   }
   else {
-    $(".image").css("max-width", 500);             
+    $(".image").css("max-width", 500);      
+
   }
   console.log($(window).width());               
   if (localStorage.getItem('subreddits')) {

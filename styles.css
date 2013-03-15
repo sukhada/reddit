@@ -241,34 +241,7 @@ span.comments{
 }
 
 @media screen and (max-width: 44em) {
-  body {
-    margin:1.5em 0;
-  }
-img {
-	max-width: 44em;
-	max-height: 500px;
-}  
 
-#apptitle {
-	float: left;
-	font: 16px 'Open Sans' white;
-	font-weight: bold;
-	margin-top: 10px;
-}
-
-  nav{
-    ul {
-      padding:0 .5em;
-    }
-    ul > li {
-      width:100%;
-      padding:.45em .25em;
-      margin:0 0 .55em 0;
-      &:after {
-        box-shadow:none;
-      }
-    }
-  }
 }
 
 .new {
