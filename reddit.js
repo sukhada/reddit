@@ -150,12 +150,22 @@ function frontPage(result) {
       }  
     }
   }
-  $("#posts").css("display", "block");    
-  var height = $("li").each(function() {
-    var height = $(this).outerHeight();
-    $(this).children("span.upvotes").css("height", (height+15)+'px');    
-    $(this).children("span.upvotes").css("line-height", (height)+'px');
-  });    
+  if ($(window).width > 704) {
+    $("#posts").css("display", "block");    
+    var height = $("li").each(function() {
+      var height = $(this).outerHeight();
+      $(this).children("span.upvotes").css("height", (height+15)+'px');    
+      $(this).children("span.upvotes").css("line-height", (height)+'px');
+    });        
+  }
+  else {
+    var height = $("li").each(function() {
+      var height = $(this).outerHeight();
+      $(this).children("span.upvotes").css("height", (height+15)+'px');    
+      $(this).children("span.upvotes").css("line-height", (height+15)+'px');
+    });            
+  }
+
 }
 
 function loadRedditPosts() {
@@ -169,16 +179,6 @@ function loadRedditPosts() {
     $.getJSON(redditBaseURL, frontPage);    
   }
 
-}
-
-function adjustHeights(elem) {
-    var fontstep = 1;
-    $(elem).each(function(title) {  	
-	    if ($(".title:eq("+ title+")").height()>$(".title:eq("+ title+")").parent().height() || $(".title:eq("+ title+")").width()>$(".title:eq("+ title+")").parent().width()) {
-	        $(".title:eq("+ title+")").css('font-size',(($(".title:eq("+ title+")").css('font-size').substr(0,2)-fontstep)) + 'px').css('line-height',(($(".title:eq("+ title+")").css('font-size').substr(0,2))) + 'px');
-	        adjustHeights(".title:eq("+ title+")");
-	    }      	
-    });
 }
 
 function fixMargins() {
