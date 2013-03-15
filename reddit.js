@@ -288,6 +288,7 @@ if ($(window).width() < 704) {
           ($(this).attr('href').indexOf("png") != -1) ||
           ($(this).attr('href').indexOf("gif") != -1)) {    
         $('a').bind('touchstart touchend', function(e) {
+            alert(this);
             e.preventDefault();
             $("#img").css("top", e.pageY - 10);
             $("#img").css("left", 0);    
