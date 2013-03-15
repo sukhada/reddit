@@ -171,7 +171,7 @@ function frontPage(result) {
     var height = $("li").each(function() {
       var height = $(this).outerHeight();
       $(this).children("span.upvotes").css("height", (height+20)+'px');    
-      $(this).children("span.upvotes").css("line-height", (height+20)+'px');
+      $(this).children("span.upvotes").css("line-height", (height+15)+'px');
     });            
   }
 
@@ -216,8 +216,8 @@ window.onload = function() {
     $(".image").css("max-width", $(window).height());
     $("#apptitle").css("font-size", "14px");
     $("#apptitle").css("margin-top", "27px");    
-    $("#refresh").css("margin-top", "0px");        
-    $("#refresh").css("margin-right", "5px");    
+    //$("#refresh").css("margin-top", "0px");        
+    //$("#refresh").css("margin-right", "5px");    
 
   }
   else {
