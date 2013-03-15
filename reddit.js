@@ -1,4 +1,4 @@
-var t;
+var r,t;
 var count;
 var counts = [];
 var result1 = [];
@@ -20,16 +20,17 @@ setTimeout(function() {localStorage.clear();}, 1800000);
 
 function addNewSubreddit() {	
 	var temp = $("#subreddit").val();
-  $("#submit").css("display", "block");
-  $("#clear").css("display", "block");  
+  $("#submit").css("display", "inline");
+  $("#clear").css("display", "inline");  
 	array.push(temp);
 	counts.push(0);
-	$("#listofsubreddits").append("<li>" + temp+ '<input type="text" class="new"></input>'+"</li>");
+  var placeholder = 100/(array.length);
+	$("#listofsubreddits").append("<li>" + temp+ '<input type="text" class="new" placeholder="'+ placeholder + '%"></input>'+"</li>");
 	$("#subreddit").val("");	
 
   localStorage.setItem('subreddits', array);	
-    localStorage.setItem('counts', counts);  
-    localStorage.removeItem('posts');
+  localStorage.setItem('counts', counts);  
+  localStorage.removeItem('posts');
 }
 
 function loadSubreddit() {
@@ -37,8 +38,8 @@ function loadSubreddit() {
 	$("#listofsubreddits").empty();
   console.log(array,weights,counts);
   if (array.length > 0) {
-    $("#submit").css("display", "block");
-    $("#clear").css("display", "block");     
+    $("#submit").css("display", "inline");
+    $("#clear").css("display", "inline");     
   }
 	for (var j = 0; j < array.length; j++) {
 		var temp = array[j];
@@ -59,6 +60,8 @@ function loadSubreddit() {
 function loadModal() {
   console.log('loadSubreddit');
   $("#listofsubreddits").empty();
+  $("#submit").css("display", "inline");
+  $("#clear").css("display", "inline");      
   console.log(array,weights,counts);
   for (var j = 0; j < array.length; j++) {
     var temp = array[j];
@@ -245,8 +248,22 @@ window.onload = function() {
   	}
 } 
 
-$("#open").click(function() {
-	$(".modal").toggleClass("hide");
+$("#open").on('mouseenter', function() {
+  clearTimeout(r);  
+	$(".modal").removeClass("hide");
+});
+
+$(".modal").on('mouseleave', function() {
+  r = setTimeout(function() {$(".modal").addClass("hide");},500);
+});
+
+$(".modal").on('mouseenter', function() {
+  clearTimeout(r);
+  $(".modal").removeClass("hide");
+});
+
+$("#open").on('mouseleave', function() {
+  r=setTimeout(function() {$(".modal").addClass("hide");},500);
 });
 
 $(".close").click(function() {
@@ -335,6 +352,8 @@ $("#refresh").click(function() {
 $("#loadmore").click(function () {
 	loadPosts();
 });
+
+
 
 $("#listofsubreddits").on('click', ".remove", function () {
   var temp = ($(this).siblings('a').text().substring(0,$(this).siblings('a').text().length-1)).replace(/[0-9]/g, '').replace(/\./g, "");
