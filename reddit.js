@@ -124,8 +124,8 @@ function loadPosts() {
 			localStorage.setItem('counts', counts);						
 		}
   }
+  $("#posts").css("display", "block");    
   if ($(window).width > 704) {
-    $("#posts").css("display", "block");    
     var height = $("li").each(function() {
       var height = $(this).outerHeight();
       $(this).children("span.upvotes").css("height", (height+15)+'px');    
@@ -159,8 +159,8 @@ function frontPage(result) {
       }  
     }
   }
+  $("#posts").css("display", "block");    
   if ($(window).width > 704) {
-    $("#posts").css("display", "block");    
     var height = $("li").each(function() {
       var height = $(this).outerHeight();
       $(this).children("span.upvotes").css("height", (height+15)+'px');    
