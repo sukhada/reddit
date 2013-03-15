@@ -279,45 +279,33 @@ $("#clear").click(function() {
 });
 
 
-if ($(window).width() < 704) {
-  $(document).ready(function() {
-    var link = $(this).attr('href');    
-    if (link != undefined) {  
-    console.log('defined!');  
-        $(document).on('mouseenter', 'a', function(e) {
-          if (($(this).attr('href').indexOf("i.imgur") != -1) || 
-              ($(this).attr('href').indexOf("jpg") != -1) || 
-              ($(this).attr('href').indexOf("png") != -1) ||
-              ($(this).attr('href').indexOf("gif") != -1)) {            
-            console.log(this);
-            e.preventDefault();
-            $("#img").css("top", e.pageY - 10);
-            $("#img").css("left", 0);    
-            console.log($("#img").css("left"));
-            $(this).css("color", "#05B8CC");
-            $("#img").append("<img class='image' src='"+ link +"'></img>");
-        }
-      });
-    }
-  localStorage.setItem("posts", $("#posts").html());    
-  });
-}
-
-else {
-  $(document).on("mouseenter", "a", function(e) {
+$(document).on("mouseenter", "a", function(e) {
   var link = $(this).attr('href');
   if (link != undefined) {
-    if ($(this).attr('href').indexOf("i.imgur") != -1) {
-      $("#img").css("top", e.pageY - 10);
-      $("#img").css("left", e.pageX - 30);    
-      $(this).css("color", "#05B8CC");
-      $("#img").append("<img class='image' src='"+ link +"'></img>")
-    }    
+    if (($(this).attr('href').indexOf("i.imgur") != -1) || 
+        ($(this).attr('href').indexOf("jpg") != -1) || 
+        ($(this).attr('href').indexOf("png") != -1) ||
+        ($(this).attr('href').indexOf("gif") != -1)) {
+      if ($(window).width > 704) {
+        $("#img").css("top", e.pageY - 10);
+        $("#img").css("left", e.pageX - 30);    
+        $(this).css("color", "#05B8CC");
+        $("#img").append("<img class='image' src='"+ link +"'></img>")        
+      }
+      else {
+        $("#img").css("max-width", $(window).width);        
+        $("#img").css("top", e.pageY - 10);
+        $("#img").css("left", 0);    
+        $(this).css("color", "#05B8CC");
+        $("#img").append("<img class='image' src='"+ link +"'></img>")         
+      }
+    }  
   }
   localStorage.setItem("posts", $("#posts").html());
 });
 
-$(document).on("mousemove", "a", function(e) {
+if ($(window).width > 704) {
+  $(document).on("mousemove", "a", function(e) {
   var link = $(this).attr('href');
   if (link != undefined) {
     if (($(this).attr('href').indexOf("i.imgur") != -1) || 
@@ -326,15 +314,19 @@ $(document).on("mousemove", "a", function(e) {
         ($(this).attr('href').indexOf("gif") != -1)) {
       $("#img").css("top",(e.pageY - 10));
       $("#img").css("left", e.pageX + 30);
-    }    
-  }
-});
-
+      }    
+    }
+  });
 
   $(document).on("mouseleave", "a", function() {
     $("#img").empty();
   });  
 }
+else {
+  setTimeout(function() {$("#img").empty();}, 3000);
+}
+
+
 
 
 $("#refresh").click(function() {
