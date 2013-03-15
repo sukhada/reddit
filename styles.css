@@ -226,3 +226,11 @@ span.comments{
 #posts a:visited {
 	color: #05B8CC;
 }
+
+#clear {
+	display: none;
+}
+
+#submit {
+	display: none;
+}

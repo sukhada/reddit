@@ -19,6 +19,8 @@ setTimeout(function() {localStorage.clear();}, 1800000);
 
 function addNewSubreddit() {	
 	var temp = $("#subreddit").val();
+  $("#submit").css("display", "block");
+  $("#clear").css("display", "block");  
 	array.push(temp);
 	counts.push(0);
 	$("#listofsubreddits").append("<li>" + temp+ '<input type="text" class="new"></input>'+"</li>");
@@ -244,27 +246,28 @@ $(".close").click(function() {
 })
 
 $("#submit").click(function() {
-	$(".new").each(function (eachone) {		
-		var tem = $(".new:eq("+eachone+")").val();
-		if (tem != "") {
-			weights.push(tem);			
-		}
-	});
+  $(".new").each(function (eachone) {   
+    var tem = $(".new:eq("+eachone+")").val();
+    if (tem != "") {
+      weights.push(tem);      
+    }
+  });
     if (weights.length == 0) {
-    	for (var i = 0; i < array.length; i++) {		
-    		weights[i] = 100/array.length;
-    	}
+      for (var i = 0; i < array.length; i++) {    
+        weights[i] = 100/array.length;
+      }
       console.log(weights);
-    }		
-	$("#listofsubreddits").empty();
+    }   
+  $("#listofsubreddits").empty();
     localStorage.setItem('weights', weights);
     window.location.reload();
 });
 
 $("#clear").click(function() {
-	localStorage.clear();
-	window.location.reload();
+  localStorage.clear();
+  window.location.reload();
 });
+
 
 $(document).on("mouseenter", "a", function(e) {
 	var link = $(this).attr('href');
