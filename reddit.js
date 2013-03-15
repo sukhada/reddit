@@ -122,7 +122,6 @@ function loadPosts() {
   }
   $("#posts").css("display", "block");    
   var height = $("li:nth-last-child(-n+20)").each(function() {
-    console.log(this);
     var height = $(this).outerHeight();
     $(this).children("span.upvotes").css("line-height", (height+15)+'px');
   });   
@@ -151,7 +150,6 @@ function frontPage(result) {
   $("#posts").css("display", "block");    
   var height = $("li").each(function() {
     var height = $(this).outerHeight();
-    console.log($(this).children("a.mainlink").children("span.title").text(), height);
     $(this).children("span.upvotes").css("height", (height+15)+'px');    
     $(this).children("span.upvotes").css("line-height", (height+15)+'px');
   });   
@@ -281,8 +279,29 @@ $("#clear").click(function() {
 });
 
 
-$(document).on("mouseenter", "a", function(e) {
-	var link = $(this).attr('href');
+if ($(window).width() < 704) {
+  $(document).ready(function() {
+    var link = $(this).attr('href');    
+    if (link != undefined) {    
+      if (($(this).attr('href').indexOf("i.imgur") != -1) || 
+          ($(this).attr('href').indexOf("jpg") != -1) || 
+          ($(this).attr('href').indexOf("png") != -1) ||
+          ($(this).attr('href').indexOf("gif") != -1)) {    
+        $('a').bind('touchstart touchend', function(e) {
+            e.preventDefault();
+            $("#img").css("top", e.pageY - 10);
+            $("#img").css("left", 0);    
+            console.log($("#img").css("left"));
+            $(this).css("color", "#05B8CC");
+            $("#img").append("<img class='image' src='"+ link +"'></img>");
+        });
+      }
+    }
+  });
+}
+else {
+  $(document).on("mouseenter", "a", function(e) {
+  var link = $(this).attr('href');
   if (link != undefined) {
     if ($(this).attr('href').indexOf("i.imgur") != -1) {
       $("#img").css("top", e.pageY - 10);
@@ -295,7 +314,7 @@ $(document).on("mouseenter", "a", function(e) {
 });
 
 $(document).on("mousemove", "a", function(e) {
-	var link = $(this).attr('href');
+  var link = $(this).attr('href');
   if (link != undefined) {
     if (($(this).attr('href').indexOf("i.imgur") != -1) || 
         ($(this).attr('href').indexOf("jpg") != -1) || 
@@ -307,9 +326,12 @@ $(document).on("mousemove", "a", function(e) {
   }
 });
 
-$(document).on("mouseleave", "a", function() {
-	$("#img").empty();
-});
+
+  $(document).on("mouseleave", "a", function() {
+    $("#img").empty();
+  });  
+}
+
 
 $("#refresh").click(function() {
 	localStorage.removeItem("posts");
