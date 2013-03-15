@@ -284,7 +284,7 @@ if ($(window).width() < 704) {
     var link = $(this).attr('href');    
     if (link != undefined) {  
     console.log('defined!');  
-        $(document).on('touchstart touchend', 'a', function(e) {
+        $(document).on('mouseenter', 'a', function(e) {
           if (($(this).attr('href').indexOf("i.imgur") != -1) || 
               ($(this).attr('href').indexOf("jpg") != -1) || 
               ($(this).attr('href').indexOf("png") != -1) ||
