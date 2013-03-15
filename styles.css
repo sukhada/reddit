@@ -232,6 +232,14 @@ span.comments{
 	display: none;
 }
 
+
+#apptitle {
+	float: left;
+	font: 30px 'Open Sans' white;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
 @media screen and (max-width: 44em) {
   body {
     margin:1.5em 0;
@@ -240,6 +248,14 @@ img {
 	max-width: 44em;
 	max-height: 500px;
 }  
+
+#apptitle {
+	float: left;
+	font: 16px 'Open Sans' white;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
   nav{
     ul {
       padding:0 .5em;
@@ -267,11 +283,4 @@ display: inline;
 	float: left;
 	margin-top: 2px;
 	margin-left: 2px;
-}
-
-#apptitle {
-	float: left;
-	font: 30px 'Open Sans' white;
-	font-weight: bold;
-	margin-top: 10px;
 }
