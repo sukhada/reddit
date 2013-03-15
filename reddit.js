@@ -214,7 +214,7 @@ window.onload = function() {
     console.log('here');
     $(".image").css("max-width", $(window).width());        
     $(".image").css("max-width", $(window).height());
-    $("#apptitle").css("font-size", "16px");
+    $("#apptitle").css("font-size", "14px");
     $("#apptitle").css("margin-top", "26px");    
     $("#refresh").css("margin-right", "5px");    
 
