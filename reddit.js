@@ -197,8 +197,8 @@ function fixMargins() {
 }
 
 window.onload = function() {
-  $("#img").css("max-width", $(window).width());        
-  $("#img").css("max-width", $(window).height());          
+  $(".image").css("max-width", $(window).width());        
+  $(".image").css("max-width", $(window).height());          
   console.log($(window).width());               
   if (localStorage.getItem('subreddits')) {
   	if (localStorage.getItem('lastItems')) {
@@ -290,11 +290,11 @@ $(document).on("mouseenter", "a", function(e) {
         $("#img").append("<img class='image' src='"+ link +"'></img>")        
       }
       else {
-        console.log($(window).width());
         $("#img").css("top", e.pageY - 10);
-        $("#img").css("left", 0);    
+        $("#img").css("left", 0);           
         $(this).css("color", "#05B8CC");
-        $("#img").append("<img class='image' src='"+ link +"'></img>")    
+        $("#img").append("<img class='image' src='"+ link +"'></img>");
+        console.log($(".image").css("width"));         
         setTimeout(function() {$("#img").empty();}, 3000);             
       }
     }  
