@@ -291,7 +291,7 @@ $(document).on("mouseenter", "a", function(e) {
       }
       else {
         console.log($(window).width());
-        $("#img").css("top", 0);
+        $("#img").css("top", e.pageY - 10);
         $("#img").css("left", 0);    
         $(this).css("color", "#05B8CC");
         $("#img").append("<img class='image' src='"+ link +"'></img>")    
