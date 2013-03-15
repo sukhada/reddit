@@ -125,7 +125,6 @@ function loadPosts() {
     var height = $(this).outerHeight();
     $(this).children("span.upvotes").css("line-height", (height+15)+'px');
   });   
-  $("#loading").css("display", "none");
   $("#posts").css("display", "block");  
 
 
@@ -152,9 +151,7 @@ function frontPage(result) {
     var height = $(this).outerHeight();
     $(this).children("span.upvotes").css("height", (height+15)+'px');    
     $(this).children("span.upvotes").css("line-height", (height+15)+'px');
-  });   
-  $("#loading").css("display", "none");
-  $("#posts").css("display", "block");  
+  });    
 }
 
 function loadRedditPosts() {
@@ -200,8 +197,8 @@ function fixMargins() {
 }
 
 window.onload = function() {
-  $("#loading").css("height", $(window).height());
-  $("#loading").css("width", $(window).width());  
+  $("#img").css("max-width", $(window).width());        
+  console.log($(window).width());               
   if (localStorage.getItem('subreddits')) {
   	if (localStorage.getItem('lastItems')) {
   			lastItems = localStorage.getItem('lastItems').split(",");  			
@@ -225,8 +222,7 @@ window.onload = function() {
     if (localStorage.getItem('posts')){
       $("#posts").html(localStorage.getItem('posts'));  
       loadModal();    
-      $("#posts").css("display", "block");        
-      console.log(weights);
+      $("#posts").css("display", "block");   
     }
     else {
       loadSubreddit();			
@@ -286,14 +282,14 @@ $(document).on("mouseenter", "a", function(e) {
         ($(this).attr('href').indexOf("jpg") != -1) || 
         ($(this).attr('href').indexOf("png") != -1) ||
         ($(this).attr('href').indexOf("gif") != -1)) {
-      if ($(window).width > 704) {
+      if ($(window).width() > 704) {
         $("#img").css("top", e.pageY - 10);
         $("#img").css("left", e.pageX - 30);    
         $(this).css("color", "#05B8CC");
         $("#img").append("<img class='image' src='"+ link +"'></img>")        
       }
       else {
-        $("#img").css("max-width", $(window).width);        
+        console.log($(window).width());
         $("#img").css("top", e.pageY - 10);
         $("#img").css("left", 0);    
         $(this).css("color", "#05B8CC");
@@ -305,27 +301,24 @@ $(document).on("mouseenter", "a", function(e) {
   localStorage.setItem("posts", $("#posts").html());
 });
 
-if ($(window).width > 704) {
-  $(document).on("mousemove", "a", function(e) {
-  var link = $(this).attr('href');
-  if (link != undefined) {
-    if (($(this).attr('href').indexOf("i.imgur") != -1) || 
-        ($(this).attr('href').indexOf("jpg") != -1) || 
-        ($(this).attr('href').indexOf("png") != -1) ||
-        ($(this).attr('href').indexOf("gif") != -1)) {
-      $("#img").css("top",(e.pageY - 10));
-      $("#img").css("left", e.pageX + 30);
+$(document).on("mousemove", "a", function(e) {
+  if ($(window).width() > 704) {    
+    var link = $(this).attr('href');
+    if (link != undefined) {
+      if (($(this).attr('href').indexOf("i.imgur") != -1) || 
+          ($(this).attr('href').indexOf("jpg") != -1) || 
+          ($(this).attr('href').indexOf("png") != -1) ||
+          ($(this).attr('href').indexOf("gif") != -1)) {
+        $("#img").css("top",(e.pageY - 10));
+        $("#img").css("left", e.pageX + 30);
       }    
     }
-  });
 
-  $(document).on("mouseleave", "a", function() {
-    $("#img").empty();
-  });  
-}
-else {
-
-}
+    $(document).on("mouseleave", "a", function() {
+      $("#img").empty();
+    });  
+  }
+});
 
 
 

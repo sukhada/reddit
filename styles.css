@@ -258,10 +258,3 @@ img {
     }
   }
 }
-
-#loading {
-	display: block;
-	background: url('ajax-loader.gif') no-repeat;
-	left: 0;
-	position: fixed;
-}
