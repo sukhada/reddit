@@ -222,3 +222,7 @@ span.comments{
 	float: left;
 	font-size: 18px;
 }
+
+#posts a:visited {
+	color: #05B8CC;
+}

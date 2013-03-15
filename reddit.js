@@ -282,7 +282,10 @@ $(document).on("mouseenter", "a", function(e) {
 $(document).on("mousemove", "a", function(e) {
 	var link = $(this).attr('href');
   if (link != undefined) {
-    if ($(this).attr('href').indexOf("i.imgur") != -1) {
+    if (($(this).attr('href').indexOf("i.imgur") != -1) || 
+        ($(this).attr('href').indexOf("jpg") != -1) || 
+        ($(this).attr('href').indexOf("png") != -1) ||
+        ($(this).attr('href').indexOf("gif") != -1)) {
       $("#img").css("top",(e.pageY - 10));
       $("#img").css("left", e.pageX + 30);
     }    
