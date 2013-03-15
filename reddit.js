@@ -154,7 +154,7 @@ function frontPage(result) {
   var height = $("li").each(function() {
     var height = $(this).outerHeight();
     $(this).children("span.upvotes").css("height", (height+15)+'px');    
-    $(this).children("span.upvotes").css("line-height", (height+15)+'px');
+    $(this).children("span.upvotes").css("line-height", (height)+'px');
   });    
 }
 
@@ -201,8 +201,13 @@ function fixMargins() {
 }
 
 window.onload = function() {
-  $(".image").css("max-width", $(window).width());        
-  $(".image").css("max-width", $(window).height());          
+  if ($(window).width < 704) {
+    $(".image").css("max-width", $(window).width());        
+    $(".image").css("max-width", $(window).height());          
+  }
+  else {
+    $(".image").css("max-width", 500);             
+  }
   console.log($(window).width());               
   if (localStorage.getItem('subreddits')) {
   	if (localStorage.getItem('lastItems')) {

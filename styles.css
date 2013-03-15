@@ -6,7 +6,7 @@ body {
 #posts {
 	list-style-type: none;	
 	padding-top: 60px;
-	margin:0;
+	margin:0 auto;
 	display: none;
 }
 
@@ -63,7 +63,7 @@ span.color {
   position: fixed;
   background-color: white;
   top: 0;
-  left: 0;
+  right: 0;
   background: #f9f9f9;
   background-image: -webkit-linear-gradient(top, #f9f9f9, #e9e9e9);
   background-image: -moz-linear-gradient(top, #f9f9f9, #e9e9e9);
@@ -94,7 +94,7 @@ span.color {
     border-width: 0 8px 8px;
     content: "";
     display: block;
-    left: 25px;
+    left: 70px;
     position: absolute;
     top: -8px;
     width: 0;
@@ -106,7 +106,7 @@ span.color {
     border-width: 0 8px 8px;
     content: "";
     display: block;
-    left: 25px;
+    left: 70px;
     position: absolute;
     top: -7px;
     width: 0;
@@ -174,25 +174,21 @@ nav {
 
 nav li a{
 	text-decoration: none;
-	font: 18px 'Open Sans' white;
-}
-
-
-nav li a:hover .modal {
-	display: block;
-}
-nav a {
+	font: 12px 'Open Sans' white;
+	font-weight: bold;	
 	color: white;
-	margin-top: 23px;
-	float: left;
+	margin-top: 31px;
+	float: right;
+  	margin-right: 5px;	
 }
 
 nav span {
 	color: white;
-	font: 15px 'Open Sans' white;
+	font: 12px 'Open Sans' white;
+	font-weight: bold;	
 	float: right;
-	margin-top: 12px;
-	margin-right: 5px;
+	margin-top: 16px;
+	margin-right: 45px;
 }
 
 #loadmore {
@@ -257,4 +253,25 @@ img {
       }
     }
   }
+}
+
+.new {
+width: 30px;
+display: inline;
+}
+
+#pic{
+	background: url(reddit.png);
+	width: 32px;
+	height: 43px;
+	float: left;
+	margin-top: 2px;
+	margin-left: 2px;
+}
+
+#apptitle {
+	float: left;
+	font: 30px 'Open Sans' white;
+	font-weight: bold;
+	margin-top: 10px;
 }
