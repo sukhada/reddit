@@ -216,6 +216,8 @@ window.onload = function() {
     $(".image").css("max-width", $(window).height());
     $("#apptitle").css("font-size", "16px");
     $("#apptitle").css("margin-top", "26px");    
+    $("#refresh").css("margin-right", "25px");    
+
   }
   else {
     $(".image").css("max-width", 500);      
