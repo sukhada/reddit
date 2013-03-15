@@ -198,6 +198,7 @@ function fixMargins() {
 
 window.onload = function() {
   $("#img").css("max-width", $(window).width());        
+  $("#img").css("max-width", $(window).height());          
   console.log($(window).width());               
   if (localStorage.getItem('subreddits')) {
   	if (localStorage.getItem('lastItems')) {
