@@ -297,7 +297,8 @@ $(document).on("mouseenter", "a", function(e) {
         $("#img").css("top", e.pageY - 10);
         $("#img").css("left", 0);    
         $(this).css("color", "#05B8CC");
-        $("#img").append("<img class='image' src='"+ link +"'></img>")         
+        $("#img").append("<img class='image' src='"+ link +"'></img>")    
+        setTimeout(function() {$("#img").empty();}, 3000);             
       }
     }  
   }
@@ -323,7 +324,7 @@ if ($(window).width > 704) {
   });  
 }
 else {
-  setTimeout(function() {$("#img").empty();}, 3000);
+
 }
 
 
