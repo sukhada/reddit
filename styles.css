@@ -240,6 +240,10 @@ span.comments{
   body {
     margin:1.5em 0;
   }
+img {
+	max-width: 44em;
+	max-height: 500px;
+}  
   nav{
     ul {
       padding:0 .5em;

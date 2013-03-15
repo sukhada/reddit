@@ -123,8 +123,8 @@ function loadPosts() {
   $("#posts").css("display", "block");    
   var height = $("li:nth-last-child(-n+20)").each(function() {
     console.log(this);
-    var height = $(this).height();
-    $(this).children("span.upvotes").css("line-height", height+'px');
+    var height = $(this).outerHeight();
+    $(this).children("span.upvotes").css("line-height", (height+15)+'px');
   });   
   $("#loading").css("display", "none");
   $("#posts").css("display", "block");  
@@ -150,8 +150,10 @@ function frontPage(result) {
   }
   $("#posts").css("display", "block");    
   var height = $("li").each(function() {
-    var height = $(this).height();
-    $(this).children("span.upvotes").css("line-height", height+'px');
+    var height = $(this).outerHeight();
+    console.log($(this).children("a.mainlink").children("span.title").text(), height);
+    $(this).children("span.upvotes").css("height", (height+15)+'px');    
+    $(this).children("span.upvotes").css("line-height", (height+15)+'px');
   });   
   $("#loading").css("display", "none");
   $("#posts").css("display", "block");  
