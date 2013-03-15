@@ -1,3 +1,4 @@
+var t;
 var count;
 var counts = [];
 var result1 = [];
@@ -278,6 +279,8 @@ $("#clear").click(function() {
 
 $(document).on("mouseenter", "a", function(e) {
   var link = $(this).attr('href');
+  clearTimeout(t);
+  $("#img").empty();
   if (link != undefined) {
     if (($(this).attr('href').indexOf("i.imgur") != -1) || 
         ($(this).attr('href').indexOf("jpg") != -1) || 
@@ -295,7 +298,7 @@ $(document).on("mouseenter", "a", function(e) {
         $(this).css("color", "#05B8CC");
         $("#img").append("<img class='image' src='"+ link +"'></img>");
         console.log($(".image").css("width"));         
-        setTimeout(function() {$("#img").empty();}, 3000);             
+        t = setTimeout(function() {$("#img").empty();}, 3000);             
       }
     }  
   }
