@@ -269,23 +269,33 @@ window.onload = function() {
   	}
 } 
 
-$("#open").on('mouseenter', function() {
-  clearTimeout(r);  
-	$(".modal").removeClass("hide");
-});
+if ($(window).width > 704) {
+  $("#open").on('mouseenter', function() {
+    clearTimeout(r);  
+    $(".modal").removeClass("hide");
+  });
 
-$(".modal").on('mouseleave', function() {
-  r = setTimeout(function() {$(".modal").addClass("hide");},500);
-});
+  $(".modal").on('mouseleave', function() {
+    r = setTimeout(function() {$(".modal").addClass("hide");},500);
+  });
 
-$(".modal").on('mouseenter', function() {
-  clearTimeout(r);
-  $(".modal").removeClass("hide");
-});
+  $(".modal").on('mouseenter', function() {
+    clearTimeout(r);
+    $(".modal").removeClass("hide");
+  });
 
-$("#open").on('mouseleave', function() {
-  r=setTimeout(function() {$(".modal").addClass("hide");},500);
-});
+  $("#open").on('mouseleave', function() {
+    r=setTimeout(function() {$(".modal").addClass("hide");},500);
+  });
+}
+
+else {
+  $("#open").on('click', function() {
+    $(".modal").toggleClass("hide");
+  });
+
+
+}
 
 $(".close").click(function() {
 	$(".modal").addClass("hide");	
