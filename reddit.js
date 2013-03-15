@@ -124,12 +124,21 @@ function loadPosts() {
 			localStorage.setItem('counts', counts);						
 		}
   }
-  $("#posts").css("display", "block");    
-  var height = $("li:nth-last-child(-n+20)").each(function() {
-    var height = $(this).outerHeight();
-    $(this).children("span.upvotes").css("line-height", (height+15)+'px');
-  });   
-  $("#posts").css("display", "block");  
+  if ($(window).width > 704) {
+    $("#posts").css("display", "block");    
+    var height = $("li").each(function() {
+      var height = $(this).outerHeight();
+      $(this).children("span.upvotes").css("height", (height+15)+'px');    
+      $(this).children("span.upvotes").css("line-height", (height)+'px');
+    });        
+  }
+  else {
+    var height = $("li").each(function() {
+      var height = $(this).outerHeight();
+      $(this).children("span.upvotes").css("height", (height+15)+'px');    
+      $(this).children("span.upvotes").css("line-height", (height+15)+'px');
+    });            
+  }
 
 
   localStorage.removeItem('posts');
