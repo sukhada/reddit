@@ -35,6 +35,10 @@ function loadSubreddit() {
   console.log('loadSubreddit');
 	$("#listofsubreddits").empty();
   console.log(array,weights,counts);
+  if (array.length > 0) {
+    $("#submit").css("display", "block");
+    $("#clear").css("display", "block");     
+  }
 	for (var j = 0; j < array.length; j++) {
 		var temp = array[j];
     console.log(temp);
@@ -116,10 +120,14 @@ function loadPosts() {
 			localStorage.setItem('counts', counts);						
 		}
   }
-  var height = $("li").each(function() {
+  $("#posts").css("display", "block");    
+  var height = $("li:nth-last-child(-n+20)").each(function() {
+    console.log(this);
     var height = $(this).height();
     $(this).children("span.upvotes").css("line-height", height+'px');
-  }); 
+  });   
+  $("#loading").css("display", "none");
+  $("#posts").css("display", "block");  
 
 
   localStorage.removeItem('posts');
@@ -140,10 +148,13 @@ function frontPage(result) {
       }  
     }
   }
+  $("#posts").css("display", "block");    
   var height = $("li").each(function() {
     var height = $(this).height();
     $(this).children("span.upvotes").css("line-height", height+'px');
   });   
+  $("#loading").css("display", "none");
+  $("#posts").css("display", "block");  
 }
 
 function loadRedditPosts() {
@@ -187,10 +198,6 @@ function fixMargins() {
     adjustHeights(".title");
   });  
 }
-
-$(window).on('resize', function () {
-  fixMargins();
-});
 
 window.onload = function() {
   $("#loading").css("height", $(window).height());
@@ -328,7 +335,3 @@ $("#listofsubreddits").on('click', ".remove", function () {
   window.location.reload();  
 });
 
-$.when(loadPosts()).done(function(a1) {
-  $("#loading").css("display", "none")
-  $("#posts").css("display", "block");
-}); 
