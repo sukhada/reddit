@@ -225,6 +225,7 @@ window.onload = function() {
     if (localStorage.getItem('posts')){
       $("#posts").html(localStorage.getItem('posts'));  
       loadModal();    
+      $("#posts").css("display", "block");        
       console.log(weights);
     }
     else {
