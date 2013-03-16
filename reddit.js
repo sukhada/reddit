@@ -108,7 +108,7 @@ function loadPosts() {
 				if (result.data.children[i] != undefined) {
 					var img = result.data.children[i].data.title;
 					if (!result.data.children[i].data.over_18) {
-						$("#posts").append("<li><span class='upvotes'>" +result.data.children[i].data.ups+  "<span class='labelupvotes'>upvotes</span></span><a class='mainlink' href='" + result.data.children[i].data.url +"' target='_blank'><span class='title'>" + img + "</span></a><span class='author'>Submitted by <span class='color'>" 
+						$("#posts").append("<li><span class='upvotes'>" +result.data.children[i].data.ups+  "<span class='labelupvotes'>upvotes</span></span><a class='mainlink' href='" + result.data.children[i].data.url +"' target='_tab'><span class='title'>" + img + "</span></a><span class='author'>Submitted by <span class='color'>" 
 						+ result.data.children[i].data.author+ "</span></span> to <span class='subreddit'>" + result.data.children[i].data.subreddit+ 
             " </span><span class='comments'><a href='http://www.reddit.com"+ result.data.children[i].data.permalink +"'>"+ 
             result.data.children[i].data.num_comments + " comments</a></span></li>");
@@ -151,7 +151,7 @@ function frontPage(result) {
       var img = result.data.children[i].data.title;
       if (!result.data.children[i].data.over_18) {
         $("#posts").append("<li><span class='upvotes'>" +result.data.children[i].data.ups+  "<span class='labelupvotes'>upvotes</span></span><a class='mainlink' href='" + 
-          result.data.children[i].data.url +"' target='_blank'><span class='title'>" + img + "</span></a><span class='author'>Submitted by <span class='color'>" 
+          result.data.children[i].data.url +"' target='_tab'><span class='title'>" + img + "</span></a><span class='author'>Submitted by <span class='color'>" 
           + result.data.children[i].data.author+ "</span></span> to <span class='subreddit'>" + result.data.children[i].data.subreddit+ 
           " </span><span class='comments'><a href='http://www.reddit.com"+ result.data.children[i].data.permalink +"'>"+ 
           result.data.children[i].data.num_comments + " comments</a></span></li>");
@@ -402,4 +402,3 @@ $("#listofsubreddits").on('click', ".remove", function () {
   $(this).parent().remove();
   window.location.reload();  
 });
-
