@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Placeholder Title</title>               
+        <link rel="stylesheet" type="text/css" href="styles.css">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>        
+		<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+<meta name="viewport" content="width=device-width" />
+
+    </head>
+    <body>
+    	<nav>
+    		<a href="#" id="pic"></a>
+    		<span id="apptitle">customReddit</span>
+			<li><a href="#" id="open">Add Subreddit+</a></li>
+			<!--<span id="refresh">Refresh</span>-->
+		</nav>
+
+		<div class="modal hide">
+			<input type="text" id="subreddit" placeholder="Add Subreddit"></input>  			  		
+	 		<div id="listofsubreddits">
+	 		</div>
+	 		<button id="clear">Clear</button>	 		
+	 		<button id="submit">Submit</button>
+		</div>
+		<div id='img'></div>
+	 	<ul id="posts"></ul>
+	 	<li id="loadmore">Load More</li>
+    </body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>        
+<script src="reddit.js"></script>    
+</html>
